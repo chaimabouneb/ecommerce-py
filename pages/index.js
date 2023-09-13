@@ -4,9 +4,9 @@ import CartCheckOut from "../components/CartCheckOut";
 import Head from "next/head";
 import Basket from "../components/Basket";
 //import WebgiViewer from "../components/WebgiViewer.js";
-/**const DynamicWebgiViewer = dynamic(() => import("../components/WebgiViewer"), {
+const WebgiViewer = dynamic(() => import("../components/WebgiViewer"), {
   ssr: false, // Disable server-side rendering for this component
-});**/
+});
 
 const HomePage = () => {
   return (
@@ -24,6 +24,7 @@ const HomePage = () => {
       </main>
       <Offres />
       <Trending />
+    <WebgiViewer/>
     </>
   );
 };

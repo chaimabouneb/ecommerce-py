@@ -1,11 +1,32 @@
-import React from "react";
+
+import React, { useEffect ,useState } from 'react';
+
 import GameCard from "../components/cardgame/GameCard";
+
 const Trending = () => {
-  const games = [
+  const [games, setGames] = useState([]);
+  useEffect(() => {
+    const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkzNDMxMjY2LCJpYXQiOjE2OTM0Mjc2NjYsImp0aSI6IjZhZmMxMDEyNjlmNTRhM2ZiZmI0OGU3NTEyMTE4MDExIiwidXNlcl9pZCI6MX0.w9qKNlZSYSPg7ZfKelCQEQKfhrnJzJRTNIpq2Wj3Xh0'
+  
+
+  fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(data => {
+      if (Array.isArray(data)) {
+        setGames(data);
+      } else {
+        console.error('Invalid response format:', data);
+      }
+    })
+    .catch(error => console.error('Error fetching data:', error));
+}, []);
+ 
+ 
+  const game = [
     {
       id: 1,
       price: 12,
-      name: "Call of Duty: Modern Warfare",
+      name: "Cal of Duty: Modern Warfare",
       slug: "call-of-duty",
       image: "https://unsplash.com/fr/photos/Wzs4-QEmCUQ",
     },
@@ -71,9 +92,9 @@ const Trending = () => {
             <GameCard
               key={game.id}
               gameName={game.name}
-              imageUrl={game.image}
-              slug={game.slug}
-              price={game.price}
+              imageUrl='https://unsplash.com/fr/photos/Wzs4-QEmCUQ'
+              slug='slug'
+              price='12'
             />
           ))}
         </div>
